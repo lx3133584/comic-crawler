@@ -2,6 +2,7 @@
 import requests
 import random
 import json
+from config import proxyUrl
 # Define here the models for your spider middleware
 #
 # See documentation in:
@@ -36,7 +37,7 @@ class ProxiesMiddleware(object):
         self.count = 0 # 初始化获取ip次数
         params = { 'types': 0, 'count': 10, 'country': '国内' }
         print('fetching proxies list')
-        res = requests.get('http://127.0.0.1:8899/', params)
+        res = requests.get(proxyUrl, params)
         ip_ports = json.loads(res.text)
         self.proxies_list = []
         for item in ip_ports:
